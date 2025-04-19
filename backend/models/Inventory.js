@@ -12,3 +12,5 @@ const inventorySchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("Inventory", inventorySchema);
+
+//Final update for review
