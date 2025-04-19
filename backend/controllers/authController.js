@@ -284,3 +284,5 @@ module.exports = {
   loginUser,
   googleLogin 
 };
+
+// This code is a Node.js controller for handling user authentication, including Google login, OTP-based password reset, and standard email/password login. It uses libraries like `google-auth-library`, `nodemailer`, `otp-generator`, `bcryptjs`, and `jsonwebtoken` to manage these functionalities. The code also includes error handling and user feedback mechanisms to ensure a smooth user experience.
