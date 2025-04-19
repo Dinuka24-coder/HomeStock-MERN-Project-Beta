@@ -118,3 +118,5 @@ router.delete("/delete-user/:id", protect, adminOnly, async (req, res) => {
 });
 
 module.exports = router;
+
+//Updated user routes files to handle all the crud operations
