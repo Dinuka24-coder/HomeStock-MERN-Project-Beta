@@ -1,0 +1,235 @@
+/* Avatar.css */
+.avatar-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.avatar-face {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  animation: breathe 4s infinite ease-in-out;
+}
+
+.avatar-eyes {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.avatar-eye {
+  width: 8px;
+  height: 8px;
+  background: #333;
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.avatar-mouth {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 4px;
+  background: #333;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.avatar-expression {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+
+/* Talking animation */
+.avatar-mouth.talking {
+  animation: talk 0.3s infinite alternate;
+  height: 6px;
+}
+
+/* Speaking indicator */
+.sound-waves {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 16px;
+  height: 16px;
+}
+
+.sound-wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(71, 118, 230, 0.6);
+  border-radius: 50%;
+  animation: soundWave 1.5s infinite;
+}
+
+.sound-wave:nth-child(1) {
+  width: 100%;
+  height: 100%;
+  animation-delay: 0s;
+}
+
+.sound-wave:nth-child(2) {
+  width: 70%;
+  height: 70%;
+  animation-delay: 0.3s;
+}
+
+.sound-wave:nth-child(3) {
+  width: 40%;
+  height: 40%;
+  animation-delay: 0.6s;
+}
+
+/* Emotion styles */
+.emotion-happy .avatar-face {
+  background: linear-gradient(180deg, #FFFFFF 0%, #E8FFF0 100%);
+}
+
+.emotion-happy .avatar-mouth {
+  width: 16px;
+  height: 8px;
+  border-radius: 0 0 10px 10px;
+  bottom: 28%;
+}
+
+.emotion-happy .avatar-eyes {
+  top: 33%;
+}
+
+.emotion-sad .avatar-face {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F0F0FF 100%);
+}
+
+.emotion-sad .avatar-mouth {
+  width: 16px;
+  height: 8px;
+  border-radius: 10px 10px 0 0;
+  bottom: 25%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.emotion-sad .avatar-eyes {
+  top: 38%;
+}
+
+.emotion-curious .avatar-face {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F0F8FF 100%);
+}
+
+.emotion-curious .avatar-eye.right {
+  transform: scale(1.2);
+}
+
+.emotion-curious .avatar-mouth {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  bottom: 25%;
+}
+
+.emotion-focused .avatar-face {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8F0FF 100%);
+}
+
+.emotion-focused .avatar-eyes {
+  transform: translateX(-50%) scale(0.9);
+}
+
+.emotion-focused .avatar-mouth {
+  width: 12px;
+  height: 3px;
+}
+
+.emotion-concerned .avatar-face {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF8E1 100%);
+}
+
+.emotion-concerned .avatar-mouth {
+  width: 14px;
+  height: 6px;
+  border-radius: 10px 10px 0 0;
+  transform: translateX(-50%) rotate(180deg) scale(0.8);
+  bottom: 26%;
+}
+
+.emotion-concerned .avatar-eyes {
+  transform: translateX(-50%) scale(0.9);
+  top: 36%;
+}
+
+.speaking .avatar-face {
+  animation: pulse 1s infinite alternate;
+}
+
+/* Animations */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes talk {
+  0% {
+    height: 4px;
+    width: 14px;
+  }
+  50% {
+    height: 6px;
+    width: 16px;
+  }
+  100% {
+    height: 8px;
+    width: 14px;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.1);
+  }
+}
+
+@keyframes soundWave {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}

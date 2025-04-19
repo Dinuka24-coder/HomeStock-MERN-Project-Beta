@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./../styles/login.css";
-import { FaLock } from "react-icons/fa"; // Optional icon
+import { FaLock, FaGoogle } from "react-icons/fa";
+import { GoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -17,7 +19,7 @@ function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle login form submission
+  // Handle regular login form submission
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -57,6 +59,38 @@ function Login() {
     }
   };
 
+  // Handle Google login
+  const handleGoogleLogin = async (credentialResponse) => {
+    try {
+      const res = await axios.post('http://localhost:3000/api/auth/google', {
+        token: credentialResponse.credential,
+      });
+
+      const { accessToken, user } = res.data;
+
+      // Store token and user
+      localStorage.setItem("userToken", accessToken);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      Swal.fire({
+        title: "Welcome!",
+        text: "Google login successful!",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => {
+        navigate("/home");
+      });
+    } catch (err) {
+      console.error('Google login failed', err.message);
+      Swal.fire({
+        title: "Error!",
+        text: "Google login failed. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  };
+
   // Use effect hook to add login-page class to body
   useEffect(() => {
     document.body.classList.add("login-page");
@@ -70,14 +104,54 @@ function Login() {
   return (
     <div className="login-container">
       <div className="icon">
-        <FaLock /> {/* Using Font Awesome lock icon */}
+        <FaLock />
       </div>
       <h2>Login</h2>
+      
+      {/* Regular Login Form */}
       <form onSubmit={handleLogin}>
-        <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
-        <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="Email" 
+          onChange={handleChange} 
+          required 
+        />
+        <input 
+          type="password" 
+          name="password" 
+          placeholder="Password" 
+          onChange={handleChange} 
+          required 
+        />
         <button type="submit">Login</button>
       </form>
+
+      {/* Divider */}
+      <div className="divider">
+        <span>OR</span>
+      </div>
+
+      {/* Google Login Button */}
+      <div className="google-login">
+        <GoogleLogin
+          onSuccess={handleGoogleLogin}
+          onError={() => {
+            Swal.fire({
+              title: "Error!",
+              text: "Google login failed",
+              icon: "error",
+              confirmButtonText: "OK",
+            });
+          }}
+          theme="filled_blue"
+          size="large"
+          text="continue_with"
+          shape="rectangular"
+          width="300"
+        />
+      </div>
+
       <p>
         <a href="/forgot-password">Forgot Password?</a>
       </p>

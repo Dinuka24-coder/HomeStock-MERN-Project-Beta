@@ -2,11 +2,19 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 const UserSchema = new mongoose.Schema({
-  fullName: { type: String, required: true },
+  fullName: { 
+    type: String, 
+    required: function () { return !this.googleId; } 
+  },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  password: { 
+    type: String, 
+    required: function () { return !this.googleId; } 
+  },
   profilePic: { type: String, default: "" },
-  isAdmin: { type: Boolean, default: false }, // New field: Admin role
+  googleId: { type: String }, // For Google-authenticated users
+  isAdmin: { type: Boolean, default: false },
+  lastLogin: { type: Date, default: null }
 }, { timestamps: true });
 
 // Hash password before saving
