@@ -31,3 +31,5 @@ const adminOnly = (req, res, next) => {
 };
 
 module.exports = { protect, adminOnly };
+
+//Authorization for admins, to distingiush them from normal users while logging in
