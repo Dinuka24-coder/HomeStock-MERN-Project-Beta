@@ -2,13 +2,10 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-// Generate JWT Token
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 };
 
-// @route   POST /api/users/register
-// @desc    Register a new user
 const registerUser = async (req, res) => {
     const { fullName, email, password } = req.body;
 
@@ -28,8 +25,6 @@ const registerUser = async (req, res) => {
     }
 };
 
-// @route   POST /api/users/login
-// @desc    Authenticate user & get token
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
@@ -40,10 +35,16 @@ const loginUser = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: "Invalid email or password" });
 
+        // Update last login time
+        user.lastLogin = new Date();
+        await user.save();
+
         res.status(200).json({ 
             _id: user._id, 
             fullName: user.fullName, 
-            email: user.email, 
+            email: user.email,
+            isAdmin: user.isAdmin,
+            lastLogin: user.lastLogin,
             token: generateToken(user._id) 
         });
     } catch (error) {
@@ -51,19 +52,15 @@ const loginUser = async (req, res) => {
     }
 };
 
-// @route   GET /api/users
-// @desc    Get all users
 const getUsers = async (req, res) => {
     try {
-        const users = await User.find().select("-password"); // Exclude password
+        const users = await User.find().select("-password");
         res.json(users);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
 
-// @route   DELETE /api/users/:id
-// @desc    Delete user account
 const deleteUser = async (req, res) => {
     try {
         await User.findByIdAndDelete(req.params.id);
