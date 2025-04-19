@@ -1,3 +1,5 @@
+import ReactDOM from 'react-dom/client';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css'; // Main Styles
 import Register from './pages/Register';
@@ -12,6 +14,7 @@ import Expenses from './pages/Expenses';
 import ResetPassword from "./pages/ResetPassword";
 import Footer from './components/Footer'; // Import Footer
 import Header from './components/Header'; // Import Header
+import Chatbot from './components/Chatbot';
 import React, { useEffect, useState } from 'react';
 
 // ✅ Wrapper Component to Conditionally Render Header & Footer
@@ -52,6 +55,9 @@ const AppWrapper = () => {
         <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
 
+      {/* Render Chatbot on authenticated routes */}
+      {isAuthenticated && !excludeHeaderFooterRoutes.includes(location.pathname) && <Chatbot />}
+
       {/* ✅ Conditionally Render Footer */}
       {shouldShowHeaderFooter && <Footer />}
     </div>
@@ -61,10 +67,19 @@ const AppWrapper = () => {
 // ✅ Main App Component
 function App() {
   return (
-    <Router>
-      <AppWrapper />
-    </Router>
+    <GoogleOAuthProvider clientId="549453271146-arjg9f76kmic2o7tsr4rmo7tipelurul.apps.googleusercontent.com">
+      <Router>
+        <AppWrapper />
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <GoogleOAuthProvider clientId="549453271146-arjg9f76kmic2o7tsr4rmo7tipelurul.apps.googleusercontent.com">
+    <App />
+  </GoogleOAuthProvider>
+);
 
 export default App;
