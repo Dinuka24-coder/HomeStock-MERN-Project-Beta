@@ -35,3 +35,5 @@ const loginUser = async (req, res) => {
 };
 
 module.exports = { loginUser };
+
+//finally added admin dashboard and controls related to admin to identify an admin
