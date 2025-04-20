@@ -13,4 +13,4 @@ const inventorySchema = new mongoose.Schema({
 
 module.exports = mongoose.model("Inventory", inventorySchema);
 
-//Final update for review
+//Final update is made and ready to be merged
