@@ -18,3 +18,5 @@ UserSchema.pre("save", async function (next) {
 });
 
 module.exports = mongoose.model("User", UserSchema);
+
+//Finally added the admin fields and password hashing

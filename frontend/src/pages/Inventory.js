@@ -1,7 +1,7 @@
 import Layout from "../components/Layout";
 import { useEffect, useState } from "react";
 import "../styles/inventory.css"; // New CSS file for styles
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation function
 
 function Inventory() {
   const [items, setItems] = useState([]);

@@ -48,3 +48,6 @@ function App() {
 }
 
 export default App;
+
+
+//Fixed some errors where the footer is not rendering properly on some pages

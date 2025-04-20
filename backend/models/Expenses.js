@@ -10,4 +10,4 @@ const ExpensesSchema = new mongoose.Schema({
   addedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // Tracks which user added it
 });
 
-module.exports = mongoose.model("Expenses", ExpensesSchema);//exporting to mongo
+module.exports = mongoose.model("Expenses", ExpensesSchema);
