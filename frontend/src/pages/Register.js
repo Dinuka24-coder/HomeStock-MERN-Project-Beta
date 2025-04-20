@@ -65,3 +65,6 @@ function Register() {
 }
 
 export default Register;
+
+
+//Made some important changes at the last second
