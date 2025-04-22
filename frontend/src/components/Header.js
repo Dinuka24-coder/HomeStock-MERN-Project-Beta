@@ -27,7 +27,7 @@ function Header() {
     if (command.includes("logout")) {
       localStorage.removeItem("userToken");
       navigate("/");
-      speak("You have been logged out.");
+      speak(" logging out.");
     }
 
     // 🔹 CRUD Operations for Inventory
