@@ -7,7 +7,7 @@ const useSpeechRecognition = (onCommandRecognized) => {
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      alert("browser not supporting.");
+      alert("Your browser does not support Speech Recognition");
       return;
     }
 
