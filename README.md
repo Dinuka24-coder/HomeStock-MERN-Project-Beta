@@ -6,6 +6,8 @@ Welcome to the HomeStock Management System! 🎯 This is a MERN (MongoDB, Expres
 ✅ Inventory Management – Keep track of household items, update stock levels, and manage categories.
 ✅ Expenses Management – Monitor daily expenses and generate insights for better budgeting.
 ✅ Voice navigation is implemented to make easier for users to navigate through out the system
+✅ Efficient chatbot for to get further assistance
+✅ Google Auth for better security
 
 This project ensures smooth stock control, budget tracking, and household organization, making life easier! 🚀
 
