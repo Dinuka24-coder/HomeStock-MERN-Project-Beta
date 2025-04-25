@@ -1,4 +1,9 @@
 🏠 HomeStock Management System
+
+
+
+
+
 Welcome to the Stock-Mate! 🎯 This is a MERN (MongoDB, Express, React, Node.js) based web application designed to help users efficiently manage their household inventory, track expenses, and handle user roles seamlessly.
 
 🔥 Key Features
