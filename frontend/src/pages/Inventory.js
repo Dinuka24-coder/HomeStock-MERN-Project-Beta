@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate for naviga
 
 function Inventory() {
   const [items, setItems] = useState([]);
-  const [editItem, setEditItem] = useState(null); // Track the item being edited
+  const [editItem, setEditItem] = useState(null); // Track the item  edited
   const [newItem, setNewItem] = useState({
     itemName: "",
     quantity: "",
@@ -45,6 +45,7 @@ function Inventory() {
       setLoading(false);
     }
   };
+  //new update
 
   const handleAddOrUpdateItem = async (e) => {
     e.preventDefault();
