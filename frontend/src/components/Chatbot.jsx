@@ -452,4 +452,4 @@ const highlightWords = (text, keywords) => {
 
 export default Chatbot;
 
-//Still configuring the frontend of the chatbot
+//Chatbot done
