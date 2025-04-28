@@ -71,4 +71,4 @@ function Login() {
 
 export default Login;
 
-//Google auth is still trying
+//Google auth is completed
